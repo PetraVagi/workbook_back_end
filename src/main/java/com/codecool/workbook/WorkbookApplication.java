@@ -62,7 +62,6 @@ public class WorkbookApplication {
                         Arrays.asList(Tag.OOP, Tag.JAVA), Room.OOP)
         );
 
-        System.out.println(questionDaoMem.getRandomQuestion());
     }
 
 }

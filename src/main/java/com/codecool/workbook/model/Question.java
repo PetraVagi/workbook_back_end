@@ -19,6 +19,26 @@ public class Question {
         this.room = room;
     }
 
+    public int getQuestionID() {
+        return questionID;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
