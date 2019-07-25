@@ -17,9 +17,12 @@ public class QuestionController {
         return questionDaoMem.getRandomQuestion();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
     public String addDog(@RequestBody Question question){
         this.questionDaoMem.addQuestion(question);
+        System.out.println(question.getQuestionID());
+        System.out.println(question.getQuestionText());
         return "New question saved successfully";
     }
 

@@ -15,8 +15,9 @@ public class Question {
         this.questionID = ++ID_COUNTER;
         this.questionText = questionText;
         this.answer = answer;
-        this.tags = tags;
-        this.room = room;
+        //TODO tags, room
+//        this.tags = tags;
+//        this.room = room;
     }
 
     public int getQuestionID() {
