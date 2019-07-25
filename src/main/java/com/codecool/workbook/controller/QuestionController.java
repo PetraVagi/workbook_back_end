@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/question")
 public class QuestionController {
 
@@ -17,7 +18,6 @@ public class QuestionController {
         return questionDaoMem.getRandomQuestion();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
     public String addDog(@RequestBody Question question){
         this.questionDaoMem.addQuestion(question);

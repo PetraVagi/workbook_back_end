@@ -17,7 +17,7 @@ public class Question {
         this.answer = answer;
         //TODO tags, room
 //        this.tags = tags;
-//        this.room = room;
+        this.room = room;
     }
 
     public int getQuestionID() {
