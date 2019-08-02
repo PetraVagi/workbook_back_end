@@ -20,11 +20,8 @@ public class Tag {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @ManyToMany
-    @Singular
+    @ManyToMany(mappedBy = "tags")
+    @EqualsAndHashCode.Exclude
     private Set<Question> questions;
 
-    public void addQuestion(Question question) {
-        this.questions.add(question);
-    }
 }

@@ -26,7 +26,11 @@ public class Question {
     private List<Answer> answers;
 
     @Singular
-    @ManyToMany(mappedBy = "questions", cascade = {CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.MERGE})
+    @JoinTable(
+            name = "question_tag",
+            joinColumns = @JoinColumn(name = "question_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @EqualsAndHashCode.Exclude
     private Set<Tag> tags;
 
