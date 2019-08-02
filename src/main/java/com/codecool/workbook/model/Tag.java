@@ -1,29 +1,30 @@
 package com.codecool.workbook.model;
 
-public enum Tag {
-    DATA_STRUCTURES,
-    ALGORITHMS,
-    PROGRAMMING_PARADIGMS,
-    PYTHON,
-    DEBUGGING,
-    VERSION_CONTROL,
-    CLEAN_CODE,
-    ERROR_HANDLING,
-    UNIX,
-    SECURITY,
-    SQL,
-    HTML,
-    CSS,
-    JAVASCRIPT,
-    NETWORKS,
-    SCRUM,
-    OOP,
-    JAVA,
-    DATABASE,
-    JAVA_ENTERPRISE,
-    SPRING,
-    JPA,
-    TESTING,
-    DEVOPS,
-    OTHER
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+public class Tag {
+
+    @Id
+    @GeneratedValue
+    private Long tagID;
+
+    @Column(nullable = false, unique = true)
+    private String name;
+
+    @ManyToMany
+    @Singular
+    private Set<Question> questions;
+
+    public void addQuestion(Question question) {
+        this.questions.add(question);
+    }
 }
