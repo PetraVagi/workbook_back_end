@@ -1,5 +1,6 @@
 package com.codecool.workbook;
 
+import com.codecool.workbook.model.Answer;
 import com.codecool.workbook.model.Question;
 import com.codecool.workbook.model.Tag;
 import com.codecool.workbook.service.repository.QuestionRepository;
@@ -29,18 +30,27 @@ public class WorkbookApplication {
     public CommandLineRunner init() {
 
         return args -> {
+
             Tag tag = Tag.builder()
-                    .name("Valami más")
+                    .name("JAVA")
+                    .build();
+
+            Answer answer = Answer.builder()
+                    .answerText("This is the right answer")
+                    .rightAnswer(true)
                     .build();
 
             Question question2 = Question.builder()
-                    .questionText("Another question")
+                    .questionText("JAVA QUESTION")
+                    .answer(answer)
                     .tag(tag)
                     .build();
 
 
             tag.setQuestions(Set.of(question2));
 
+            //TODO make a normal equals method or tag name needs to be unique again (in the db)
+            //TODO commit application.properties.skeleton.skeleton
             if (!tagRepository.findAll().contains(tag))
                 tagRepository.save(tag);
             questionRepository.save(question2);
