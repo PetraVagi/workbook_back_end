@@ -2,6 +2,7 @@ package com.codecool.workbook;
 
 import com.codecool.workbook.model.Answer;
 import com.codecool.workbook.model.Question;
+import com.codecool.workbook.model.Rating;
 import com.codecool.workbook.model.Tag;
 import com.codecool.workbook.service.repository.QuestionRepository;
 import com.codecool.workbook.service.repository.TagRepository;
@@ -31,29 +32,34 @@ public class WorkbookApplication {
 
         return args -> {
 
-            Tag tag = Tag.builder()
-                    .name("JAVA")
-                    .build();
+            Tag tag = tagRepository.findAll().get(0);
+
 
             Answer answer = Answer.builder()
-                    .answerText("This is the right answer")
-                    .rightAnswer(true)
+                    .answerText("that")
+                    .rightAnswer(false)
+                    .build();
+
+
+            Rating rating = Rating.builder()
+                    .rating(10)
                     .build();
 
             Question question2 = Question.builder()
-                    .questionText("JAVA QUESTION")
+                    .questionText("why")
                     .answer(answer)
                     .tag(tag)
+                    .rating(rating)
                     .build();
 
-
+            rating.setQuestion(question2);
+            answer.setQuestion(question2);
             tag.setQuestions(Set.of(question2));
 
-            //TODO make a normal equals method or tag name needs to be unique again (in the db)
-            //TODO commit application.properties.skeleton.skeleton
-            if (!tagRepository.findAll().contains(tag))
-                tagRepository.save(tag);
             questionRepository.save(question2);
+
+            //TODO is it okay?
+            // csak adatbázisban meglévő taget lehet kérdéshez hozzákapcsolni, vagy az új taget manuálisan el kell menteni
 
         };
 
