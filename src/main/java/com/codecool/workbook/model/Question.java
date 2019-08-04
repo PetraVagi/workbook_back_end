@@ -26,7 +26,7 @@ public class Question {
     private List<Answer> answers;
 
     @Singular
-    @ManyToMany(cascade = {CascadeType.MERGE})
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "question_tag",
             joinColumns = @JoinColumn(name = "question_id"),
@@ -37,15 +37,8 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private Room room;
 
+    @OneToOne(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
+    private Rating rating;
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "questionID=" + questionID +
-                ", questionText='" + questionText + '\'' +
-                ", answer='" + answers + '\'' +
-                ", tags=" + tags +
-                ", room=" + room +
-                '}';
-    }
 }
