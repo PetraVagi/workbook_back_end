@@ -1,11 +1,7 @@
 package com.codecool.workbook.controller;
 
 import com.codecool.workbook.model.Question;
-import com.codecool.workbook.model.Tag;
 import com.codecool.workbook.service.data_handler.QuestionHandler;
-import com.codecool.workbook.service.data_handler.TagHandler;
-import com.codecool.workbook.service.repository.QuestionRepository;
-import com.codecool.workbook.service.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +15,7 @@ public class QuestionController {
 
     @GetMapping("/random")
     public Question getRandomQuestion() {
-        return null;
-        //TODO
-//        return questionDaoMem.getRandomQuestion();
+        return questionHandler.getRandomQuestion();
     }
 
     @PostMapping("/add")

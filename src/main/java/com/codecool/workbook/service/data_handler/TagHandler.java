@@ -6,6 +6,7 @@ import com.codecool.workbook.service.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,12 +15,18 @@ public class TagHandler {
     @Autowired
     private TagRepository tagRepository;
 
-    public void saveTagIfNeeded(Question question){
+    public void saveTag(Question question){
+        List<Tag> tags = new ArrayList<>();
         for (Tag tag : question.getTags()) {
-            if (tagRepository.findByName(tag.getName()) == null) {
-                tag.setQuestions(List.of(question));
+            Tag tagInTheDb = tagRepository.findByName(tag.getName());
+            if (tagInTheDb == null) {
                 tagRepository.saveAndFlush(tag);
+                tags.add(tag);
+            } else {
+                tags.add(tagInTheDb);
             }
+            tag.setQuestions(List.of(question));
         }
+        question.setTags(tags);
     }
 }
