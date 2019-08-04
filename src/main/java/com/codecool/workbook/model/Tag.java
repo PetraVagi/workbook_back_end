@@ -22,6 +22,11 @@ public class Tag {
 
     @ManyToMany(mappedBy = "tags")
     @EqualsAndHashCode.Exclude
-    private Set<Question> questions;
+    private List<Question> questions;
+
+
+    public Tag(String name) {
+        this.name = name;
+    }
 
 }

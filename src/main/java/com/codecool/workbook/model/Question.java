@@ -32,7 +32,7 @@ public class Question {
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @EqualsAndHashCode.Exclude
-    private Set<Tag> tags;
+    private List<Tag> tags;
 
     @Enumerated(EnumType.STRING)
     private Room room;

@@ -12,7 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Set;
+import java.util.List;
 
 @SpringBootApplication
 public class WorkbookApplication {
@@ -31,35 +31,35 @@ public class WorkbookApplication {
     public CommandLineRunner init() {
 
         return args -> {
-
-            Tag tag = tagRepository.findAll().get(0);
-
-
-            Answer answer = Answer.builder()
-                    .answerText("that")
-                    .rightAnswer(false)
-                    .build();
-
-
-            Rating rating = Rating.builder()
-                    .rating(10)
-                    .build();
-
-            Question question2 = Question.builder()
-                    .questionText("why")
-                    .answer(answer)
-                    .tag(tag)
-                    .rating(rating)
-                    .build();
-
-            rating.setQuestion(question2);
-            answer.setQuestion(question2);
-            tag.setQuestions(Set.of(question2));
-
-            questionRepository.save(question2);
-
-            //TODO is it okay?
-            // csak adatbázisban meglévő taget lehet kérdéshez hozzákapcsolni, vagy az új taget manuálisan el kell menteni
+//
+//            Tag tag = Tag.builder()
+//                    .name("OOP")
+//                    .build();
+//
+//
+//            Answer answer = Answer.builder()
+//                    .answerText("New answer")
+//                    .rightAnswer(true)
+//                    .build();
+//
+//
+//            Rating rating = Rating.builder()
+//                    .rating(30)
+//                    .build();
+//
+//            Question question2 = Question.builder()
+//                    .questionText("New question")
+//                    .answer(answer)
+//                    .tag(tag)
+//                    .rating(rating)
+//                    .build();
+//
+//            rating.setQuestion(question2);
+//            answer.setQuestion(question2);
+//            tag.setQuestions(List.of(question2));
+//
+//            tagRepository.save(tag);
+//            questionRepository.save(question2);
 
         };
 
