@@ -16,7 +16,9 @@ public class TagHandler {
     private TagRepository tagRepository;
 
     public void saveTag(Question question){
+
         List<Tag> tags = new ArrayList<>();
+
         for (Tag tag : question.getTags()) {
             Tag tagInTheDb = tagRepository.findByName(tag.getName());
             if (tagInTheDb == null) {
@@ -27,6 +29,7 @@ public class TagHandler {
             }
             tag.setQuestions(List.of(question));
         }
+
         question.setTags(tags);
     }
 }

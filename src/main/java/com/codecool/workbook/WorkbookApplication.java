@@ -1,9 +1,6 @@
 package com.codecool.workbook;
 
-import com.codecool.workbook.model.Answer;
-import com.codecool.workbook.model.Question;
-import com.codecool.workbook.model.Rating;
-import com.codecool.workbook.model.Tag;
+import com.codecool.workbook.model.*;
 import com.codecool.workbook.service.repository.QuestionRepository;
 import com.codecool.workbook.service.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,35 +28,39 @@ public class WorkbookApplication {
     public CommandLineRunner init() {
 
         return args -> {
-//
-//            Tag tag = Tag.builder()
-//                    .name("OOP")
-//                    .build();
-//
-//
-//            Answer answer = Answer.builder()
-//                    .answerText("New answer")
-//                    .rightAnswer(true)
-//                    .build();
-//
-//
-//            Rating rating = Rating.builder()
-//                    .rating(30)
-//                    .build();
-//
-//            Question question2 = Question.builder()
-//                    .questionText("New question")
-//                    .answer(answer)
-//                    .tag(tag)
-//                    .rating(rating)
-//                    .build();
-//
-//            rating.setQuestion(question2);
-//            answer.setQuestion(question2);
-//            tag.setQuestions(List.of(question2));
-//
-//            tagRepository.save(tag);
-//            questionRepository.save(question2);
+
+            Tag tag = Tag.builder()
+                    .name("Programming paradigms")
+                    .build();
+
+
+            Answer answer = Answer.builder()
+                    .answerText("Casting means taking an Object of one type and turning it into a different" +
+                            "Object type. With downcasting, we are turning the Object into a subtype," +
+                            "and with upcasting we are turning it into a supertype. Upcasting is always allowed," +
+                            "but downcasting involves a type check that can throw a ClassCastException.")
+                    .rightAnswer(true)
+                    .build();
+
+
+            Rating rating = Rating.builder()
+                    .ratedAsKnown(false)
+                    .build();
+
+            Question question = Question.builder()
+                    .questionText("What is casting? What is the difference between up vs downcasting?")
+                    .answer(answer)
+                    .tag(tag)
+                    .rating(rating)
+                    .room(Room.OOP)
+                    .build();
+
+            tag.setQuestions(List.of(question));
+            answer.setQuestion(question);
+            rating.setQuestion(question);
+
+            tagRepository.save(tag);
+            questionRepository.save(question);
 
         };
 

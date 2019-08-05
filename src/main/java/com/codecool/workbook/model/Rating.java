@@ -22,6 +22,6 @@ public class Rating {
     @EqualsAndHashCode.Exclude
     private Question question;
 
-    private int rating;
+    private boolean ratedAsKnown;
 
 }
