@@ -1,5 +1,6 @@
 package com.codecool.workbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
+@JsonIgnoreProperties({"answers", "tags", "rating"})
 public class Question {
 
     @Id

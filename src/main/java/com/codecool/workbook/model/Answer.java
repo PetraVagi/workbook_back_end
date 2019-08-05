@@ -1,9 +1,7 @@
 package com.codecool.workbook.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@JsonIgnoreProperties("question")
 public class Answer {
 
     @Id
@@ -25,6 +24,7 @@ public class Answer {
     private boolean rightAnswer;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     private Question question;
 
 
