@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class QuestionHandler {
@@ -18,12 +17,12 @@ public class QuestionHandler {
     @Autowired
     private TagHandler tagHandler;
 
-    public Question getRandomQuestion() {
+    public Question getOneRandomQuestion() {
+        return questionRepository.getRandomQuestion();
+    }
 
-        //TODO Stackoverflow
-        Random random = new Random();
-        List<Question> questionList = questionRepository.findAll();
-        return questionList.get(random.nextInt(questionList.size()));
+    public List<Question> getTenRandomQuestions() {
+        return questionRepository.getTenRandomQuestions();
     }
 
     public String addNewQuestion(Question question) {

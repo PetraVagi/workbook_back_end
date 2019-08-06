@@ -5,6 +5,8 @@ import com.codecool.workbook.service.data_handler.QuestionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/question")
@@ -15,7 +17,12 @@ public class QuestionController {
 
     @GetMapping("/random")
     public Question getRandomQuestion() {
-        return questionHandler.getRandomQuestion();
+        return questionHandler.getOneRandomQuestion();
+    }
+
+    @GetMapping("/random-question-list")
+    public List<Question> getTenRandomQuestions() {
+        return questionHandler.getTenRandomQuestions();
     }
 
     @PostMapping("/add")
