@@ -11,8 +11,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query(value = "SELECT * from question order by random() limit 1;", nativeQuery = true)
     Question getRandomQuestion();
 
-    @Query(value = "SELECT * from question order by random() limit 2;", nativeQuery = true)
+    @Query(value = "SELECT * from question order by random() limit 5;", nativeQuery = true)
     List<Question> getTenRandomQuestions();
-    //TODO limit
+    //TODO limit should be 10 (if there is enough questions)
 
 }

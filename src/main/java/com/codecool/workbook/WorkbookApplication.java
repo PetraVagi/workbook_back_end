@@ -45,6 +45,7 @@ public class WorkbookApplication {
             }
 
             if (questionRepository.findAll().isEmpty()) {
+
                 Answer trueAnswer1 = Answer.builder()
                     .answerText("Casting means taking an Object of one type and turning it into a different" +
                             "Object type. With downcasting, we are turning the Object into a subtype," +
@@ -53,37 +54,16 @@ public class WorkbookApplication {
                     .rightAnswer(true)
                     .build();
 
-                Answer falseAnswer1_1 = Answer.builder()
-                        .answerText("Casting")
-                        .rightAnswer(false)
-                        .build();
-
-                Answer falseAnswer1_2 = Answer.builder()
-                        .answerText("Casting")
-                        .rightAnswer(false)
-                        .build();
-
-                Answer falseAnswer1_3 = Answer.builder()
-                        .answerText("Casting")
-                        .rightAnswer(false)
-                        .build();
-
                 Tag tag1 = tagRepository.findByName("Programming paradigms");
 
                 Question question1 = Question.builder()
                     .questionText("What is casting? What is the difference between up vs downcasting?")
                     .answer(trueAnswer1)
-                    .answer(falseAnswer1_1)
-                    .answer(falseAnswer1_2)
-                    .answer(falseAnswer1_3)
                     .tag(tag1)
                     .room(Room.OOP)
                     .build();
 
                 trueAnswer1.setQuestion(question1);
-                falseAnswer1_1.setQuestion(question1);
-                falseAnswer1_2.setQuestion(question1);
-                falseAnswer1_3.setQuestion(question1);
 
                 tag1.setQuestions(List.of(question1));
 
@@ -96,48 +76,120 @@ public class WorkbookApplication {
                         .rightAnswer(true)
                         .build();
 
-                Answer falseAnswer2_1 = Answer.builder()
-                        .answerText("Constructors")
-                        .rightAnswer(false)
-                        .build();
-
-                Answer falseAnswer2_2 = Answer.builder()
-                        .answerText("Constructors")
-                        .rightAnswer(false)
-                        .build();
-
-                Answer falseAnswer2_3 = Answer.builder()
-                        .answerText("Constructors")
-                        .rightAnswer(false)
-                        .build();
-
                 Tag tag2_1 = tagRepository.findByName("OOP");
                 Tag tag2_2 = tagRepository.findByName("JAVA");
 
                 Question question2 = Question.builder()
                         .questionText("What is a constructor?")
                         .answer(trueAnswer2)
-                        .answer(falseAnswer2_1)
-                        .answer(falseAnswer2_2)
-                        .answer(falseAnswer2_3)
                         .tag(tag2_1)
                         .tag(tag2_2)
                         .room(Room.OOP)
                         .build();
 
                 trueAnswer2.setQuestion(question2);
-                falseAnswer2_1.setQuestion(question2);
-                falseAnswer2_2.setQuestion(question2);
-                falseAnswer2_3.setQuestion(question2);
 
                 tag2_1.setQuestions(List.of(question2));
                 tag2_2.setQuestions(List.of(question2));
 
                 questionRepository.save(question2);
 
+
+
+
+                Answer trueAnswer3 = Answer.builder()
+                        .answerText("Method overloading allows us to have more than one method having the same name, " +
+                                "if the parameters of methods are different in number, sequence or data types. " +
+                                "At compile time, Java knows which method to invoke by checking the method signatures. " +
+                                "So this is called compile time polymorphism.")
+                        .rightAnswer(true)
+                        .build();
+
+                Question question3 = Question.builder()
+                        .questionText("What is method overloading?")
+                        .answer(trueAnswer3)
+                        .tag(tag2_1)
+                        .tag(tag2_2)
+                        .room(Room.OOP)
+                        .build();
+
+                trueAnswer3.setQuestion(question3);
+
+                tag2_1.setQuestions(List.of(question3));
+                tag2_2.setQuestions(List.of(question3));
+
+                questionRepository.save(question3);
+
+
+
+
+                Answer trueAnswer4 = Answer.builder()
+                        .answerText("An abstract class cannot be instantiated.")
+                        .rightAnswer(true)
+                        .build();
+
+
+                Answer falseAnswer4_1 = Answer.builder()
+                        .answerText("Exactly one instance can be created for an abstract class.")
+                        .rightAnswer(false)
+                        .build();
+
+
+                Answer falseAnswer4_2 = Answer.builder()
+                        .answerText("Any number of instances can be created for an abstract class.")
+                        .rightAnswer(false)
+                        .build();
+
+
+                Answer falseAnswer4_3 = Answer.builder()
+                        .answerText("10 instances can be created for an abstract class.")
+                        .rightAnswer(false)
+                        .build();
+
+                Question question4 = Question.builder()
+                        .questionText("How many instances can be created for an abstract class?")
+                        .answer(trueAnswer4)
+                        .answer(falseAnswer4_1)
+                        .answer(falseAnswer4_2)
+                        .answer(falseAnswer4_3)
+                        .tag(tag2_1)
+                        .tag(tag2_2)
+                        .room(Room.OOP)
+                        .build();
+
+                trueAnswer4.setQuestion(question4);
+                falseAnswer4_1.setQuestion(question4);
+                falseAnswer4_2.setQuestion(question4);
+                falseAnswer4_3.setQuestion(question4);
+
+                tag2_1.setQuestions(List.of(question4));
+                tag2_2.setQuestions(List.of(question4));
+
+                questionRepository.save(question4);
+
+
+                Answer trueAnswer5 = Answer.builder()
+                        .answerText("When no access modifier is specified for a class - " +
+                                "It is said to be having the default access modifier by default -" +
+                                "it is accessible only within the same package.")
+                        .rightAnswer(true)
+                        .build();
+
+                Question question5 = Question.builder()
+                        .questionText("What is the default access modifier in a class?")
+                        .answer(trueAnswer5)
+                        .tag(tag2_1)
+                        .tag(tag2_2)
+                        .room(Room.OOP)
+                        .build();
+
+                trueAnswer5.setQuestion(question5);
+
+                tag2_1.setQuestions(List.of(question5));
+                tag2_2.setQuestions(List.of(question5));
+
+                questionRepository.save(question5);
             }
-
-
 
         };
 
