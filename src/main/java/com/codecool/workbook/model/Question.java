@@ -22,11 +22,11 @@ public class Question {
     private String questionText;
 
     @Singular
-    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
     private List<Answer> answers;
 
     @Singular
-    @ManyToMany(cascade = {CascadeType.REMOVE})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "question_tag",
             joinColumns = @JoinColumn(name = "question_id"),

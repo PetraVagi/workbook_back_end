@@ -1,6 +1,7 @@
 package com.codecool.workbook.service.repository;
 
 import com.codecool.workbook.model.Question;
+import com.codecool.workbook.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +25,13 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     void deleteQuestionFromJoinTable(@Param("questionID") Long questionID);
 
     void deleteQuestionByQuestionID(Long questionID);
+//
+//    @Query(value =
+//            "update question q " +
+//            "set q.question_text = :questionText, " +
+//            "q.room = :room" +
+//            "where q.question_id = :questionID", nativeQuery = true)
+//    @Modifying
+//    void updateQuestion(@Param("questionID") Long questionID,
+//                        @Param("questionText") String questionText, @Param("room") Room room);
 }
