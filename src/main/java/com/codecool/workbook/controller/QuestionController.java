@@ -69,8 +69,14 @@ public class QuestionController {
         return "New question saved successfully";
     }
 
+    @DeleteMapping("/delete/{question-id}")
+    public String deleteQuestionWithAnswers(@PathVariable("question-id") Long questionID){
+        questionHandler.deleteQuestion(questionID);
+        return "Question removed from database";
+    }
 
-    //TODO Update, delete
+
+    //TODO Update
     //TODO test: user and unittest
 
 }
