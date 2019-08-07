@@ -22,7 +22,7 @@ public class Question {
     private String questionText;
 
     @Singular
-    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Answer> answers;
 
     @Singular

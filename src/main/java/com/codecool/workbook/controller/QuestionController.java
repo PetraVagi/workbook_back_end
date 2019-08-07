@@ -1,6 +1,7 @@
 package com.codecool.workbook.controller;
 
 import com.codecool.workbook.model.Question;
+import com.codecool.workbook.model.Rating;
 import com.codecool.workbook.model.Room;
 import com.codecool.workbook.service.data_handler.QuestionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,11 @@ public class QuestionController {
     @GetMapping("/id/{question-id}")
     public Question getQuestionById(@PathVariable("question-id") Long questionID){
         return questionHandler.getQuestionById(questionID);
+    }
+
+    @PostMapping("/rated-as-known/{question-id}")
+    public String markQuestionAsKnown(@PathVariable("question-id") Long questionID){
+        return questionHandler.markQuestionAsKnown(questionID);
     }
 
     @PostMapping("/add")

@@ -2,7 +2,9 @@ package com.codecool.workbook.service.data_handler;
 
 
 import com.codecool.workbook.model.Question;
+import com.codecool.workbook.model.Rating;
 import com.codecool.workbook.service.repository.QuestionRepository;
+import com.codecool.workbook.service.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ public class QuestionHandler {
 
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private RatingRepository ratingRepository;
 
     @Autowired
     private TagHandler tagHandler;
@@ -55,5 +60,14 @@ public class QuestionHandler {
         } else {
             return "Question wasn't in database";
         }
+    }
+
+    public String markQuestionAsKnown(Long questionID) {
+        Rating rating = Rating.builder()
+                .ratedAsKnown(true)
+                .question(questionRepository.findByQuestionID(questionID))
+                .build();
+        ratingRepository.save(rating);
+        return "Question marked as known";
     }
 }
