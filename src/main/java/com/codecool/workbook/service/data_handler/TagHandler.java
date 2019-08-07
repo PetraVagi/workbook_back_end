@@ -15,6 +15,10 @@ public class TagHandler {
     @Autowired
     private TagRepository tagRepository;
 
+    public List<String> getAllTags() {
+        return tagRepository.findAllTagNames();
+    }
+
     public void saveTag(Question question){
 
         List<Tag> tags = new ArrayList<>();

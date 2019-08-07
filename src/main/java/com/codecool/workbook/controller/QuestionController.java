@@ -66,7 +66,7 @@ public class QuestionController {
          */
 
         questionHandler.addNewQuestion(question);
-        return "New question saved succesfully";
+        return "New question saved successfully";
     }
 
 
