@@ -1,10 +1,12 @@
 package com.codecool.workbook.controller;
 
 import com.codecool.workbook.model.Question;
+import com.codecool.workbook.model.Room;
 import com.codecool.workbook.service.data_handler.QuestionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -31,6 +33,11 @@ public class QuestionController {
     @GetMapping("/random-question-list")
     public List<Question> getTenRandomQuestions() {
         return questionHandler.getTenRandomQuestions();
+    }
+
+    @GetMapping("/all-rooms")
+    public List<Room> getAllRooms() {
+        return Arrays.asList(Room.values());
     }
 
     @PostMapping("/add")
