@@ -41,10 +41,13 @@ public class QuestionHandler {
 
     @Transactional
     public String deleteQuestion(Long questionID){
+
         if (questionRepository.findByQuestionID(questionID) != null){
+
             questionRepository.deleteQuestionFromJoinTable(questionID);
             questionRepository.deleteQuestionByQuestionID(questionID);
             return "Question removed from database";
+
         } else {
             return "Question wasn't in database";
         }
