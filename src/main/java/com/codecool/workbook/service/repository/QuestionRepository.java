@@ -19,9 +19,9 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     Question findByQuestionID(Long questionID);
 
-    void deleteQuestionByQuestionID(Long questionID);
-
     @Query(value = "delete from question_tag where question_id= :questionID", nativeQuery = true)
     @Modifying
     void deleteQuestionFromJoinTable(@Param("questionID") Long questionID);
+
+    void deleteQuestionByQuestionID(Long questionID);
 }

@@ -65,14 +65,12 @@ public class QuestionController {
          * }
          */
 
-        questionHandler.addNewQuestion(question);
-        return "New question saved successfully";
+        return questionHandler.addNewQuestion(question);
     }
 
     @DeleteMapping("/delete/{question-id}")
     public String deleteQuestionWithAnswers(@PathVariable("question-id") Long questionID){
-        questionHandler.deleteQuestion(questionID);
-        return "Question removed from database";
+        return questionHandler.deleteQuestion(questionID);
     }
 
 
