@@ -1,18 +1,19 @@
 package com.codecool.workbook.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@JsonIgnoreProperties("questions")
 public class Tag {
 
     @Id
@@ -23,7 +24,7 @@ public class Tag {
     private String name;
 
     @ManyToMany(mappedBy = "tags")
-    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private List<Question> questions;
 
 

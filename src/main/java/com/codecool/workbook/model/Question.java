@@ -1,18 +1,17 @@
 package com.codecool.workbook.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@JsonIgnoreProperties({"answers", "tags", "rating"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "questionID")
 public class Question {
 
     @Id
@@ -24,7 +23,6 @@ public class Question {
 
     @Singular
     @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @EqualsAndHashCode.Exclude
     private List<Answer> answers;
 
     @Singular
@@ -33,14 +31,14 @@ public class Question {
             name = "question_tag",
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private List<Tag> tags;
 
     @Enumerated(EnumType.STRING)
     private Room room;
 
     @OneToOne(mappedBy = "question", cascade = CascadeType.PERSIST)
-    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Rating rating;
 
 }

@@ -15,9 +15,17 @@ public class QuestionController {
     @Autowired
     private QuestionHandler questionHandler;
 
+
     @GetMapping("/random")
-    public Question getRandomQuestion() {
-        return questionHandler.getOneRandomQuestion();
+    public Question getRandomQuestionWithAnswer() {
+
+        Question randomQuestion = questionHandler.getOneRandomQuestion();
+
+        while (randomQuestion.getRating() != null && randomQuestion.getRating().isRatedAsKnown()) {
+            randomQuestion = questionHandler.getOneRandomQuestion();
+        }
+
+        return randomQuestion;
     }
 
     @GetMapping("/random-question-list")
@@ -29,5 +37,9 @@ public class QuestionController {
     public String addNewQuestion(@RequestBody Question question){
         return questionHandler.addNewQuestion(question);
     }
+
+
+    //TODO Update, delete
+    //TODO test: user and unittest
 
 }
