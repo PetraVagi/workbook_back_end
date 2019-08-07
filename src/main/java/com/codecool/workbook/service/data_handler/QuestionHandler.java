@@ -26,6 +26,10 @@ public class QuestionHandler {
         return questionRepository.getTenRandomQuestions();
     }
 
+    public Question getQuestionById(Long questionID) {
+        return questionRepository.findByQuestionID(questionID);
+    }
+
     public String addNewQuestion(Question question) {
 
         if (question.getTags() != null) {

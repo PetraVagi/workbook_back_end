@@ -40,6 +40,11 @@ public class QuestionController {
         return Arrays.asList(Room.values());
     }
 
+    @GetMapping("/id/{question-id}")
+    public Question getQuestionById(@PathVariable("question-id") Long questionID){
+        return questionHandler.getQuestionById(questionID);
+    }
+
     @PostMapping("/add")
     public String addNewQuestionWithAnswer(@RequestBody Question question){
         /**Required JSON example:
