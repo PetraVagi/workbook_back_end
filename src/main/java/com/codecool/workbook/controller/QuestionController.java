@@ -34,8 +34,32 @@ public class QuestionController {
     }
 
     @PostMapping("/add")
-    public String addNewQuestion(@RequestBody Question question){
-        return questionHandler.addNewQuestion(question);
+    public String addNewQuestionWithAnswer(@RequestBody Question question){
+        /**Required JSON example:
+         * {
+         *     "questionText": "What is data hiding?",
+         *     "answers": [
+         *        {
+         * 			"answerText": "We use encapsulation (or data hiding) to ensure that implementation details are
+         * 			not visible to users. To achieve that in Java, declare the class' variables as private and provide
+         * 			public setter and getter methods to modify and view the variables' values.",
+         * 			"rightAnswer": true
+         *        },
+         *        {
+         *          answerText": "Bad answer",
+         *          rightAnswer": false
+         *        }
+         * 	    ],
+         *     "tags": [
+         *         "OOP",
+         *         "Java"
+         *     ],
+         *     "room": "OOP"
+         * }
+         */
+
+        questionHandler.addNewQuestion(question);
+        return "New question saved succesfully";
     }
 
 

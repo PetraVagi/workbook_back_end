@@ -31,14 +31,12 @@ public class Question {
             name = "question_tag",
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    @JsonIgnore
     private List<Tag> tags;
 
     @Enumerated(EnumType.STRING)
     private Room room;
 
     @OneToOne(mappedBy = "question", cascade = CascadeType.PERSIST)
-    @JsonIgnore
     private Rating rating;
 
 }

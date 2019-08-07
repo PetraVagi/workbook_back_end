@@ -31,6 +31,8 @@ public class QuestionHandler {
             tagHandler.saveTag(question);
         }
 
+        question.getAnswers().forEach(answer -> answer.setQuestion(question));
+
         this.questionRepository.save(question);
 
         return "New question saved successfully";

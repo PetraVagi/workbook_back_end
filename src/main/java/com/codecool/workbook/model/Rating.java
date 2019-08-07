@@ -1,5 +1,6 @@
 package com.codecool.workbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class Rating {
 
     @OneToOne
     @JoinColumn(name = "question_id", referencedColumnName = "questionID")
+    @JsonIgnore
     private Question question;
 
     private boolean ratedAsKnown;
