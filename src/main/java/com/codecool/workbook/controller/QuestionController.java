@@ -20,14 +20,7 @@ public class QuestionController {
 
     @GetMapping("/random")
     public Question getRandomQuestionWithAnswer() {
-
-        Question randomQuestion = questionHandler.getOneRandomQuestion();
-
-        while (randomQuestion.getRating() != null && randomQuestion.getRating().isRatedAsKnown()) {
-            randomQuestion = questionHandler.getOneRandomQuestion();
-        }
-
-        return randomQuestion;
+        return questionHandler.getOneRandomQuestion();
     }
 
     @GetMapping("/random-question-list")

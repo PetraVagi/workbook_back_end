@@ -24,7 +24,13 @@ public class QuestionHandler {
     private TagHandler tagHandler;
 
     public Question getOneRandomQuestion() {
-        return questionRepository.getRandomQuestion();
+        Question randomQuestion = questionRepository.getRandomQuestion();
+
+        while (randomQuestion.getRating() != null && randomQuestion.getRating().isRatedAsKnown()) {
+            randomQuestion = questionRepository.getRandomQuestion();
+        }
+
+        return randomQuestion;
     }
 
     public List<Question> getTenRandomQuestions() {
