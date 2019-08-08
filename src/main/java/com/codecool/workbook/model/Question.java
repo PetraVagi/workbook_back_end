@@ -22,7 +22,7 @@ public class Question {
     private String questionText;
 
     @Singular
-    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Answer> answers;
 
     @Singular
@@ -36,7 +36,7 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private Room room;
 
-    @OneToOne(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "question")
     private Rating rating;
 
 }

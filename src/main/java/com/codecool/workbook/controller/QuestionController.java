@@ -20,14 +20,7 @@ public class QuestionController {
 
     @GetMapping("/random")
     public Question getRandomQuestionWithAnswer() {
-
-        Question randomQuestion = questionHandler.getOneRandomQuestion();
-
-        while (randomQuestion.getRating() != null && randomQuestion.getRating().isRatedAsKnown()) {
-            randomQuestion = questionHandler.getOneRandomQuestion();
-        }
-
-        return randomQuestion;
+        return questionHandler.getOneRandomQuestion();
     }
 
     @GetMapping("/random-question-list")
@@ -43,6 +36,11 @@ public class QuestionController {
     @GetMapping("/id/{question-id}")
     public Question getQuestionById(@PathVariable("question-id") Long questionID){
         return questionHandler.getQuestionById(questionID);
+    }
+
+    @PostMapping("/rated-as-known/{question-id}")
+    public String markQuestionAsKnown(@PathVariable("question-id") Long questionID){
+        return questionHandler.markQuestionAsKnown(questionID);
     }
 
     @PostMapping("/add")
