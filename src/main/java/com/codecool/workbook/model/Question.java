@@ -26,7 +26,7 @@ public class Question {
     private List<Answer> answers;
 
     @Singular
-    @ManyToMany(cascade = {CascadeType.REMOVE})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "question_tag",
             joinColumns = @JoinColumn(name = "question_id"),

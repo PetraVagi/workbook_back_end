@@ -69,10 +69,7 @@ public class QuestionHandler {
     }
 
     public String markQuestionAsKnown(Long questionID) {
-        Rating rating = Rating.builder()
-                .ratedAsKnown(true)
-                .question(questionRepository.findByQuestionID(questionID))
-                .build();
+
         if(ratingRepository.findByQuestionQuestionID(questionID) != null){
             if (!ratingRepository.findByQuestionQuestionID(questionID).isRatedAsKnown()) {
                 ratingRepository.updateRatingToTrue(questionID);
@@ -82,6 +79,10 @@ public class QuestionHandler {
             }
 
         } else {
+            Rating rating = Rating.builder()
+                    .ratedAsKnown(true)
+                    .question(questionRepository.findByQuestionID(questionID))
+                    .build();
             ratingRepository.save(rating);
             return "Question marked as known";
         }
