@@ -73,7 +73,17 @@ public class QuestionHandler {
                 .ratedAsKnown(true)
                 .question(questionRepository.findByQuestionID(questionID))
                 .build();
-        ratingRepository.save(rating);
-        return "Question marked as known";
+        if(ratingRepository.findByQuestionQuestionID(questionID) != null){
+            if (!ratingRepository.findByQuestionQuestionID(questionID).isRatedAsKnown()) {
+                ratingRepository.updateRatingToTrue(questionID);
+                return "Question updated as known";
+            } else {
+                return "Question was already marked as known";
+            }
+
+        } else {
+            ratingRepository.save(rating);
+            return "Question marked as known";
+        }
     }
 }
