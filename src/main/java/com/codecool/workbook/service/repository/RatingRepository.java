@@ -13,4 +13,8 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
     @Query(value = "UPDATE rating SET rated_as_known = true WHERE question_id= :questionID", nativeQuery = true)
     @Modifying
     void updateRatingToTrue(@Param("questionID") Long questionId);
+
+    @Query(value = "delete from rating where question_id= :questionID", nativeQuery = true)
+    @Modifying
+    void deleteQuestionFromRatingTable(@Param("questionID") Long questionID);
 }

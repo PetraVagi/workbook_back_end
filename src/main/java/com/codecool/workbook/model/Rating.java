@@ -21,7 +21,7 @@ public class Rating {
     @GeneratedValue
     private Long ratingID;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "question_id", referencedColumnName = "questionID")
     @JsonIgnore
     private Question question;

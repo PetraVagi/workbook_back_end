@@ -59,6 +59,7 @@ public class QuestionHandler {
 
         if (questionRepository.findByQuestionID(questionID) != null){
 
+            ratingRepository.deleteQuestionFromRatingTable(questionID);
             questionRepository.deleteQuestionFromJoinTable(questionID);
             questionRepository.deleteQuestionByQuestionID(questionID);
             return "Question removed from database";
