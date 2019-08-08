@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -22,8 +22,9 @@ public class Question {
     private String questionText;
 
     @Singular
-    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Answer> answers;
+    @OneToMany(mappedBy = "question", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
+    @EqualsAndHashCode.Exclude
+    private Set<Answer> answers;
 
     @Singular
     @ManyToMany(cascade = {CascadeType.MERGE})
@@ -31,7 +32,8 @@ public class Question {
             name = "question_tag",
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private List<Tag> tags;
+    @EqualsAndHashCode.Exclude
+    private Set<Tag> tags;
 
     @Enumerated(EnumType.STRING)
     private Room room;

@@ -6,8 +6,9 @@ import com.codecool.workbook.service.repository.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class TagHandler {
@@ -21,7 +22,7 @@ public class TagHandler {
 
     public void saveTag(Question question){
 
-        List<Tag> tags = new ArrayList<>();
+        Set<Tag> tags = new HashSet<>();
 
         for (Tag tag : question.getTags()) {
             Tag tagInTheDb = tagRepository.findByName(tag.getName());
