@@ -1,14 +1,14 @@
 package com.codecool.workbook;
 
-import com.codecool.workbook.model.Answer;
-import com.codecool.workbook.model.Question;
-import com.codecool.workbook.model.Room;
-import com.codecool.workbook.model.Tag;
+import com.codecool.workbook.model.*;
 import com.codecool.workbook.service.repository.QuestionRepository;
 import com.codecool.workbook.service.repository.TagRepository;
+import com.codecool.workbook.service.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,6 +23,15 @@ public class DataInitializer implements CommandLineRunner {
 
     @Autowired
     private TagRepository tagRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public DataInitializer() {
+        passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -181,6 +190,25 @@ public class DataInitializer implements CommandLineRunner {
             tag2_2.setQuestions(List.of(question5));
 
             questionRepository.save(question5);
+        }
+
+        if(userRepository.findAll().isEmpty()){
+            WorkBookAppUser user_1 = WorkBookAppUser.builder()
+                    .username("User")
+                    .password(passwordEncoder.encode("password"))
+                    .role("ROLE_USER")
+                    .build();
+
+            userRepository.save(user_1);
+
+            WorkBookAppUser user_2 = WorkBookAppUser.builder()
+                    .username("Admin")
+                    .password(passwordEncoder.encode("password"))
+                    .role("ROLE_USER")
+                    .role("ROLE_ADMIN")
+                    .build();
+
+            userRepository.save(user_2);
         }
     }
 }
