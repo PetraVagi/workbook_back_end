@@ -15,8 +15,6 @@ import javax.persistence.*;
 @Entity
 public class Rating {
 
-    //TODO new rating table for every user
-
     @Id
     @GeneratedValue
     private Long ratingID;
@@ -25,6 +23,8 @@ public class Rating {
     @JoinColumn(name = "question_id", referencedColumnName = "questionID")
     @JsonIgnore
     private Question question;
+
+    //TODO userID
 
     private boolean ratedAsKnown;
 
