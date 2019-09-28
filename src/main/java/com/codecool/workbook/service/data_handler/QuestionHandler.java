@@ -54,6 +54,16 @@ public class QuestionHandler {
         return "New question saved successfully";
     }
 
+    public String updateQuestion(Question question){
+        Question questionToUpdate = questionRepository.findByQuestionID(question.getQuestionID());
+        if (questionToUpdate != null){
+
+            return "";
+        } else {
+            return "Question wasn't in database";
+        }
+    }
+
     @Transactional
     public String deleteQuestion(Long questionID){
 
