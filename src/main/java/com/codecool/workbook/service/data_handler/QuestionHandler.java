@@ -55,9 +55,10 @@ public class QuestionHandler {
     }
 
     public String updateQuestion(Question question){
+
         Question questionToUpdate = questionRepository.findByQuestionID(question.getQuestionID());
         if (questionToUpdate != null){
-
+            //TODO
             return "";
         } else {
             return "Question wasn't in database";

@@ -73,4 +73,6 @@ public class AllRepositoryTest {
         assertThat(answerRepository.findAll()).hasSize(2);
     }
 
+    //TODO more tests
+
 }

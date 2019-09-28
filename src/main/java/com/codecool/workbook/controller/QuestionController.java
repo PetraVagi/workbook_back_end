@@ -73,16 +73,12 @@ public class QuestionController {
 
     @PutMapping("/update")
     public String updateQuestion(@RequestBody Question question){
-        return "";
+        return questionHandler.updateQuestion(question);
     }
 
     @DeleteMapping("/delete/{question-id}")
     public String deleteQuestionWithAnswers(@PathVariable("question-id") Long questionID){
         return questionHandler.deleteQuestion(questionID);
     }
-
-
-    //TODO Update
-    //TODO test: user and unittest
 
 }
